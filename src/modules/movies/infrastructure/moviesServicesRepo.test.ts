@@ -3,7 +3,7 @@ import customFetch from "@/sections/shared/utils/customFetch/customFetch";
 import { getNowPlayingMovies } from "./moviesServicesRepository";
 import { moviesReducer } from "@/store/features/moviesSlice/moviesSlice";
 
-jest.mock("../../shared/utils/customFetch/customFetch");
+jest.mock("../../../sections/shared/utils/customFetch/customFetch");
 
 const mockData = {
   results: [
