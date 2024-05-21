@@ -1,7 +1,7 @@
-import { Test } from "@/components/Test";
+import { Test } from "@/sections/shared/components/Test";
 import styles from "./page.module.css";
 
-export default function Home() {
+export default async function Home() {
   return (
     <main className={styles.main}>
       <div>
