@@ -1,0 +1,91 @@
+:root {
+  --light: white;
+  --dark: black;
+  --grey: #cecece;
+  --darkRed: #be0404;
+  --darkRedLight: #b04848;
+  --darkGrey: #808080;
+  --greyHeader: #f6f6f6;
+  --lightGrey: #ededed;
+  --lightGreen: #8fd021;
+  --red: #ff0000;
+  --submitButtonRed: #c44b55;
+  --green: #12ce07;
+  --darkGreen: #7bc200;
+  --orange: #fe9f1b;
+  --blue: #005cff;
+  --lightGreyBlue: #f0f5ff;
+  --XS: 0.5rem;
+  --XSS: 0.6rem;
+  --S: 0.75rem;
+  --SM: 0.85rem;
+  --M: 1rem;
+  --MML: 1.1rem;
+  --ML: 1.25rem;
+  --MLM: 1.35rem;
+  --L: 1.5rem;
+  --LXL: 1.8rem;
+  --XL: 2rem;
+  --XXL: 2.5rem;
+}
+
+* {
+  box-sizing: border-box;
+  resize: unset;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+ul,
+li,
+span {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+image {
+  max-width: 100%;
+  max-height: 100%;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--submitButtonRed);
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--greyHeader);
+}
