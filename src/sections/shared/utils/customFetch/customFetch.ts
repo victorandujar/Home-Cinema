@@ -1,3 +1,5 @@
+import environments from "../environments/environments";
+
 type fetchMethodsType = "PUT" | "GET" | "POST" | "DELETE" | "PATCH";
 
 export interface CustomFetchResponseStructure {
@@ -25,7 +27,7 @@ const customFetch = async (
   try {
     const headers = {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${configs?.token || process.env.NEXT_PUBLIC_APIKEY}`,
+      Authorization: `Bearer ${configs?.token || environments.apiKey}`,
     };
 
     const config = {
