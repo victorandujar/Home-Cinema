@@ -1,11 +1,12 @@
 "use client";
 
-import { Test } from "@/sections/shared/components/Test";
-import styles from "./page.module.css";
+import styles from "./HomePage.module.scss";
 import { fetchNowPlayingMovies } from "@/modules/movies/application/movies";
 import { useEffect } from "react";
 import { useAppDispatch } from "@/store/hooks";
 import repositories from "@/sections/shared/utils/repositories/repositories";
+import HeroSection from "@/sections/shared/components/HeroSection/HeroSection";
+import { mockImages } from "@/mocks/moviesMocks";
 
 const Home = (): React.ReactElement => {
   const dispatch = useAppDispatch();
@@ -18,10 +19,7 @@ const Home = (): React.ReactElement => {
 
   return (
     <main className={styles.main}>
-      <div>
-        <h2>Home page</h2>
-        <Test />
-      </div>
+      <HeroSection images={mockImages} />
     </main>
   );
 };

@@ -21,3 +21,9 @@ export interface MoviesSliceState {
   movies: Movie[];
   error: string | null;
 }
+
+export interface MovieImage {
+  id: number;
+  src: string;
+  alt: string;
+}
