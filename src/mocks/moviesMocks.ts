@@ -1,4 +1,4 @@
-import { Movie } from "@/modules/movies/domain/Movies";
+import { Movie, MovieImage } from "@/modules/movies/domain/Movies";
 
 export const mockMovies: Movie[] = [
   {
@@ -60,5 +60,28 @@ export const mockMovies: Movie[] = [
     title: "Film Fünf",
     vote_average: 7.2,
     vote_count: 800,
+  },
+];
+
+export const mockImages: MovieImage[] = [
+  {
+    id: 1,
+    src: "https://collider.com/wp-content/uploads/the-avengers-movie-poster-banners-04.jpg",
+    alt: "Avengers",
+  },
+  {
+    id: 2,
+    src: "https://collider.com/wp-content/uploads/dark-knight-rises-movie-poster-banner-catwoman.jpg",
+    alt: "Catwoman",
+  },
+  {
+    id: 3,
+    src: "https://collider.com/wp-content/uploads/inception_movie_poster_banner_01.jpg",
+    alt: "Inception",
+  },
+  {
+    id: 4,
+    src: "https://w0.peakpx.com/wallpaper/700/371/HD-wallpaper-joker-movie-8k-banner.jpg",
+    alt: "Joker",
   },
 ];

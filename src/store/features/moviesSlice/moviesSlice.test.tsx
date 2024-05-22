@@ -20,6 +20,7 @@ describe("Given a moviesSlice", () => {
   beforeEach(() => {
     store = mockStore(initialState);
   });
+
   describe("When it receives a new state and the action to load now playing movies & request is not fullfilled", () => {
     test("Then it should handle getNowPlayingMovies.pending", () => {
       const action = { type: getNowPlayingMovies.pending.type };
