@@ -7,6 +7,7 @@ import { useAppDispatch } from "@/store/hooks";
 import repositories from "@/sections/shared/utils/repositories/repositories";
 import HeroSection from "@/sections/shared/components/HeroSection/HeroSection";
 import { mockImages } from "@/mocks/moviesMocks";
+import { MovieCardList } from "@/sections/movies/components/MovieCardList/MovieCardList";
 
 const Home = (): React.ReactElement => {
   const dispatch = useAppDispatch();
@@ -20,6 +21,9 @@ const Home = (): React.ReactElement => {
   return (
     <main className={styles.main}>
       <HeroSection images={mockImages} />
+      <div className={styles.moviesContainer}>
+        <MovieCardList />
+      </div>
     </main>
   );
 };
