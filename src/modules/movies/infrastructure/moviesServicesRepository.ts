@@ -1,6 +1,10 @@
 import endpoints from "@/sections/shared/utils/api/endpoints/endpoints";
 import customFetch from "@/sections/shared/utils/customFetch/customFetch";
-import { Movie, NowPlayingMoviesApiResponse } from "../domain/Movies";
+import {
+  FullMovie,
+  Movie,
+  NowPlayingMoviesApiResponse,
+} from "../domain/Movies";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { MoviesRepository } from "../domain/MoviesRepository";
 
@@ -27,7 +31,7 @@ export const getNowPlayingMovies = createAsyncThunk<
 });
 
 export const getMovieById = createAsyncThunk<
-  { data?: Movie; success?: boolean; error?: string },
+  { data?: FullMovie; success?: boolean; error?: string },
   { id: number }
 >("movies/getMovieById", async ({ id }) => {
   const { data, success, error } = await customFetch(
@@ -41,5 +45,5 @@ export const getMovieById = createAsyncThunk<
     };
   }
 
-  return { data: data as Movie, success };
+  return { data: data as FullMovie, success };
 });

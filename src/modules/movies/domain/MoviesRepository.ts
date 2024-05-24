@@ -1,5 +1,5 @@
 import { AsyncThunk } from "@reduxjs/toolkit";
-import { Movie, NowPlayingMoviesApiResponse } from "./Movies";
+import { FullMovie, Movie, NowPlayingMoviesApiResponse } from "./Movies";
 
 export interface MoviesRepository {
   getNowPlayingMovies: AsyncThunk<
@@ -9,7 +9,7 @@ export interface MoviesRepository {
   >;
 
   getMovieById: AsyncThunk<
-    { data?: Movie; success?: boolean; error?: string },
+    { data?: FullMovie; success?: boolean; error?: string },
     { id: number },
     {}
   >;
