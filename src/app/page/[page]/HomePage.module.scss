@@ -1,0 +1,16 @@
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.moviesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px 30px;
+}
+
+.paginationContainer {
+  display: flex;
+  justify-content: flex-end;
+}
