@@ -9,6 +9,9 @@ import HeroSection from "@/sections/shared/components/HeroSection/HeroSection";
 import { mockImages } from "@/mocks/moviesMocks";
 import { MovieCardList } from "@/sections/movies/components/MovieCardList/MovieCardList";
 import CustomPagination from "@/sections/shared/components/CustomPagination/CustomPagination";
+import { useAppSelector } from "../../../store/hooks";
+import Loader from "@/sections/shared/components/Loader/Loader";
+import NoDataHandler from "@/sections/shared/components/NoDataHandler/NoDataHandler";
 
 interface Props {
   params: {
@@ -19,6 +22,8 @@ interface Props {
 const Home = ({ params: { page } }: Props): React.ReactElement => {
   const dispatch = useAppDispatch();
 
+  const { loading, movies } = useAppSelector((state) => state.movies);
+
   useEffect(() => {
     (async () => {
       await fetchNowPlayingMovies(repositories.movies, dispatch, page, "en-US");
@@ -28,12 +33,20 @@ const Home = ({ params: { page } }: Props): React.ReactElement => {
   return (
     <main className={styles.main}>
       <HeroSection images={mockImages} />
-      <div className={styles.moviesContainer}>
-        <MovieCardList />
-        <div className={styles.paginationContainer}>
-          <CustomPagination currentPage={page} pageName="" />
+      {loading ? (
+        <Loader />
+      ) : !loading && movies ? (
+        <div className={styles.moviesContainer}>
+          <MovieCardList />
+          <div className={styles.paginationContainer}>
+            <CustomPagination currentPage={page} pageName="" />
+          </div>
         </div>
-      </div>
+      ) : (
+        !movies && (
+          <NoDataHandler text="No hay sesiones disponibles por ahora. Sentimos las moléstias." />
+        )
+      )}
     </main>
   );
 };

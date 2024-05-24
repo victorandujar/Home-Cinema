@@ -7,7 +7,7 @@ import { getNowPlayingMovies } from "@/modules/movies/infrastructure/moviesServi
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: MoviesSliceState = {
-  loading: false,
+  loading: true,
   movies: [],
   moviesApiResponse: {} as NowPlayingMoviesApiResponse,
   error: null,
