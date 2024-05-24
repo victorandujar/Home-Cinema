@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -27,7 +29,7 @@ const MovieCard = ({ movie }: Props): React.ReactElement => {
       >
         <CardMedia
           sx={{ height: 300 }}
-          image={`${environments.imageUrl}${movie.poster_path}`}
+          image={`${environments.imageUrl}w400/${movie.poster_path}`}
           title={movie.title}
         />
         <CardContent sx={{ padding: 1, height: 90 }}>
