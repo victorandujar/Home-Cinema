@@ -1,0 +1,9 @@
+.container {
+  transition: transform 0.5s ease;
+  width: 220px;
+}
+
+.container:hover {
+  transform: rotateY(20deg) rotateX(10deg) rotateZ(2deg);
+  box-shadow: 10px -10px 20px rgba(143, 55, 251, 0.6);
+}

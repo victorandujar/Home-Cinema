@@ -2,19 +2,16 @@
   --light: white;
   --dark: black;
   --grey: #cecece;
-  --darkRed: #be0404;
-  --darkRedLight: #b04848;
+  --darkPurple: #3d0075;
+  --purple: #7048b0;
   --darkGrey: #808080;
-  --greyHeader: #f6f6f6;
   --lightGrey: #ededed;
   --lightGreen: #8fd021;
   --red: #ff0000;
-  --submitButtonRed: #c44b55;
   --green: #12ce07;
   --darkGreen: #7bc200;
   --orange: #fe9f1b;
   --blue: #005cff;
-  --lightGreyBlue: #f0f5ff;
   --XS: 0.5rem;
   --XSS: 0.6rem;
   --S: 0.75rem;
@@ -84,9 +81,9 @@ a:hover {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--submitButtonRed);
+  background-color: var(--purple);
 }
 
 ::-webkit-scrollbar-track {
-  background-color: var(--greyHeader);
+  background-color: var(--lightGrey);
 }
