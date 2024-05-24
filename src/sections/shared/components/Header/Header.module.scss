@@ -1,10 +1,14 @@
 .container {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.4); // Fondo con opacidad
   width: 100%;
   padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  color: var(--light);
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 .logo {

@@ -56,9 +56,6 @@ export default function HeroSection({ images }: Props) {
 
   return (
     <section className={styles.heroSection}>
-      <div className={styles.title}>
-        <Header />
-      </div>
       <Link className={styles.image__slider} href={""}>
         {images && images.length > 0 && (
           <ImageCustom
