@@ -1,4 +1,5 @@
 import {
+  FullMovie,
   Movie,
   MovieImage,
   NowPlayingMoviesApiResponse,
@@ -6,7 +7,7 @@ import {
 
 export const mockMovies: Movie[] = [
   {
-    id: "1",
+    id: 1,
     adult: false,
     original_language: "en",
     original_title: "Movie One",
@@ -18,7 +19,7 @@ export const mockMovies: Movie[] = [
     vote_count: 1000,
   },
   {
-    id: "2",
+    id: 2,
     adult: false,
     original_language: "en",
     original_title: "Movie Two",
@@ -30,7 +31,7 @@ export const mockMovies: Movie[] = [
     vote_count: 1500,
   },
   {
-    id: "3",
+    id: 3,
     adult: false,
     original_language: "es",
     original_title: "Película Tres",
@@ -42,7 +43,7 @@ export const mockMovies: Movie[] = [
     vote_count: 500,
   },
   {
-    id: "4",
+    id: 4,
     adult: false,
     original_language: "fr",
     original_title: "Film Quatre",
@@ -54,7 +55,7 @@ export const mockMovies: Movie[] = [
     vote_count: 1200,
   },
   {
-    id: "5",
+    id: 5,
     adult: false,
     original_language: "de",
     original_title: "Film Fünf",
@@ -94,4 +95,61 @@ export const mockMoviesApiResponse: NowPlayingMoviesApiResponse = {
   page: 1,
   results: mockMovies,
   total_pages: 10,
+};
+
+export const mockMovie: FullMovie = {
+  adult: false,
+  backdrop_path: "/q8IEFmEGGSGmAWfwRs23XDwdFN4.jpg",
+  belongs_to_collection: {
+    id: 8945,
+    name: "Mad Max Collection",
+    poster_path: "/5q63RIHE6SeLlaOaUWLL9vMcwsu.jpg",
+    backdrop_path: "/7ECkRbU1OvDCDLxUv5YBBDxfGF3.jpg",
+  },
+  budget: 150000000,
+  genres: [
+    { id: 878, name: "Science Fiction" },
+    { id: 28, name: "Action" },
+    { id: 12, name: "Adventure" },
+  ],
+  homepage: "https://www.furiosaamadmaxsaga.com",
+  id: 786892,
+  imdb_id: "tt12037194",
+  origin_country: ["AU", "US"],
+  original_language: "en",
+  original_title: "Furiosa: A Mad Max Saga",
+  overview:
+    "As the world fell, young Furiosa is snatched from the Green Place of Many Mothers and falls into the hands of a great Biker Horde led by the Warlord Dementus. Sweeping through the Wasteland they come across the Citadel presided over by The Immortan Joe. While the two Tyrants war for dominance, Furiosa must survive many trials as she puts together the means to find her way home.",
+  popularity: 1090.011,
+  poster_path: "/iADOJ8Zymht2JPMoy3R7xceZprc.jpg",
+  production_companies: [
+    {
+      id: 174,
+      logo_path: "/zhD3hhtKB5qyv7ZeL4uLpNxgMVU.png",
+      name: "Warner Bros. Pictures",
+      origin_country: "US",
+    },
+    {
+      id: 28382,
+      logo_path: "/xqE1fjLynj3RaZca9chctZQyfzZ.png",
+      name: "Kennedy Miller Mitchell",
+      origin_country: "AU",
+    },
+  ],
+  production_countries: [
+    { iso_3166_1: "AU", name: "Australia" },
+    { iso_3166_1: "US", name: "United States of America" },
+  ],
+  release_date: "2024-05-22",
+  revenue: 0,
+  runtime: 149,
+  spoken_languages: [
+    { english_name: "English", iso_639_1: "en", name: "English" },
+  ],
+  status: "Released",
+  tagline: "Fury is born.",
+  title: "Furiosa: A Mad Max Saga",
+  video: false,
+  vote_average: 7.58,
+  vote_count: 88,
 };
