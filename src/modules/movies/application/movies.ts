@@ -1,6 +1,6 @@
 import { MoviesRepository } from "../domain/MoviesRepository";
 import {
-  Movie,
+  FullMovie,
   MoviesSliceState,
   NowPlayingMoviesApiResponse,
 } from "../domain/Movies";
@@ -35,7 +35,7 @@ export const fetchMovieById = async (
   dispatch: AppDispatch,
   id: number,
 ): Promise<{
-  data?: Movie;
+  data?: FullMovie;
   success?: boolean;
   error?: string;
 }> => {

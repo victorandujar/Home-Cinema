@@ -1,7 +1,10 @@
+"use client";
+
 import { useAppSelector } from "@/store/hooks";
 import React from "react";
 import styles from "./MovieCardList.module.scss";
 import MovieCard from "../MovieCard/MovieCard";
+import Link from "next/link";
 
 export const MovieCardList = () => {
   const { movies } = useAppSelector((state) => state.movies);
@@ -9,7 +12,9 @@ export const MovieCardList = () => {
     <ul className={styles.container}>
       {movies?.map((movie) => (
         <li key={movie.id}>
-          <MovieCard movie={movie} />
+          <Link href={`/movie/${movie.id}`}>
+            <MovieCard movie={movie} />
+          </Link>
         </li>
       ))}
     </ul>

@@ -11,7 +11,7 @@ import {
 } from "@/mocks/moviesMocks";
 import { thunk } from "redux-thunk";
 import {
-  Movie,
+  FullMovie,
   MoviesSliceState,
   NowPlayingMoviesApiResponse,
 } from "@/modules/movies/domain/Movies";
@@ -24,7 +24,7 @@ const initialState: MoviesSliceState = {
   movies: [],
   error: "",
   moviesApiResponse: {} as NowPlayingMoviesApiResponse,
-  movie: {} as Movie,
+  movie: {} as FullMovie,
 };
 
 let store: ReturnType<typeof mockStore>;

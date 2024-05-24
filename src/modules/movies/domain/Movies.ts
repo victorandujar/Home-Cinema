@@ -20,7 +20,7 @@ export interface NowPlayingMoviesApiResponse {
 export interface MoviesSliceState {
   loading: boolean;
   movies: Movie[];
-  movie: Movie;
+  movie: FullMovie;
   error: string;
   moviesApiResponse: NowPlayingMoviesApiResponse;
 }

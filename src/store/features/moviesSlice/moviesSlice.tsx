@@ -1,5 +1,5 @@
 import {
-  Movie,
+  FullMovie,
   MoviesSliceState,
   NowPlayingMoviesApiResponse,
 } from "@/modules/movies/domain/Movies";
@@ -12,7 +12,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState: MoviesSliceState = {
   loading: true,
   movies: [],
-  movie: {} as Movie,
+  movie: {} as FullMovie,
   moviesApiResponse: {} as NowPlayingMoviesApiResponse,
   error: "",
 };

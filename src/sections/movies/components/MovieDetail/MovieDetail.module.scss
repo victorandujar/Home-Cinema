@@ -1,0 +1,116 @@
+.detailPage {
+  color: var(--light);
+}
+
+.detailsTopInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.detailsHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.detailsTitle {
+  font-weight: 700;
+  font-size: var(--L);
+}
+
+.detailsMovieRate {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 200px;
+}
+
+.detailsVotes {
+  font-weight: 700;
+  font-size: var(--ML);
+  width: 50px;
+  height: 40px;
+  padding: 8px;
+  background: var(--purple);
+  border-radius: 5px;
+  text-align: center;
+}
+
+.detailsVoteNumber {
+  font-size: 12px;
+}
+
+.detailsRelease {
+  display: flex;
+  align-items: flex-end;
+  gap: 7px;
+}
+
+.detailsInfo {
+  font-size: var(--M);
+}
+
+.detailsImage {
+  width: 300px;
+  height: 450px;
+  object-fit: cover;
+  border-radius: 7px;
+}
+
+.detailsInformation {
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.detailsMovieInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 20px;
+  width: 500px;
+}
+
+.detailsSectionTitle {
+  font-weight: 600;
+  font-size: var(--ML);
+  border-bottom: 2px solid transparent;
+  border-image: linear-gradient(to right, #8a2be2, #00ffff);
+  border-image-slice: 1;
+  padding: 5px 0;
+}
+
+.detailsProductionCompanies {
+  display: flex;
+  gap: 20px;
+}
+
+.detailsCountryProduction {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.detailsCompanyImage {
+  object-fit: contain;
+}
+
+.detailsLanguage,
+.detailsGenres,
+.detailsRuntime {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.detailsOverview {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: var(--SMM);
+}
+
+.detailsOverviewText {
+  padding-top: 10px;
+}
