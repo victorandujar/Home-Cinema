@@ -1,4 +1,8 @@
-import { Movie, MovieImage } from "@/modules/movies/domain/Movies";
+import {
+  Movie,
+  MovieImage,
+  NowPlayingMoviesApiResponse,
+} from "@/modules/movies/domain/Movies";
 
 export const mockMovies: Movie[] = [
   {
@@ -85,3 +89,9 @@ export const mockImages: MovieImage[] = [
     alt: "Joker",
   },
 ];
+
+export const mockMoviesApiResponse: NowPlayingMoviesApiResponse = {
+  page: 1,
+  results: mockMovies,
+  total_pages: 10,
+};
