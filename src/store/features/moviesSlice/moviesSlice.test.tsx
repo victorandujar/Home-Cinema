@@ -1,9 +1,12 @@
 import configureStore from "redux-mock-store";
 import { moviesReducer } from "@/store/features/moviesSlice/moviesSlice";
 import { getNowPlayingMovies } from "@/modules/movies/infrastructure/moviesServicesRepository";
-import { mockMovies } from "@/mocks/moviesMocks";
+import { mockMovies, mockMoviesApiResponse } from "@/mocks/moviesMocks";
 import { thunk } from "redux-thunk";
-import { MoviesSliceState } from "@/modules/movies/domain/Movies";
+import {
+  MoviesSliceState,
+  NowPlayingMoviesApiResponse,
+} from "@/modules/movies/domain/Movies";
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares as any);
@@ -12,6 +15,7 @@ const initialState: MoviesSliceState = {
   loading: false,
   movies: [],
   error: null,
+  moviesApiResponse: {} as NowPlayingMoviesApiResponse,
 };
 
 describe("Given a moviesSlice", () => {
@@ -30,12 +34,13 @@ describe("Given a moviesSlice", () => {
         loading: true,
         movies: [],
         error: null,
+        moviesApiResponse: {},
       });
     });
   });
   describe("When it receives a new state and the action to load now playing movies & request is fullfilled", () => {
     test("Then it should handle getNowPlayingMovies.fulfilled", () => {
-      const payload = { data: { results: mockMovies } };
+      const payload = { data: mockMoviesApiResponse };
       const action = { type: getNowPlayingMovies.fulfilled.type, payload };
       const state = moviesReducer(initialState, action);
 
@@ -43,6 +48,7 @@ describe("Given a moviesSlice", () => {
         loading: false,
         movies: mockMovies,
         error: null,
+        moviesApiResponse: mockMoviesApiResponse,
       });
     });
   });
@@ -56,6 +62,7 @@ describe("Given a moviesSlice", () => {
         loading: false,
         movies: [],
         error: "Failed to load",
+        moviesApiResponse: {},
       });
     });
   });

@@ -17,6 +17,7 @@
     "@emotion/styled": "^11.11.5",
     "@mui/material": "^5.15.18",
     "@reduxjs/toolkit": "^2.2.5",
+    "@testing-library/user-event": "^14.5.2",
     "jt": "^0.0.2",
     "next": "14.2.3",
     "react": "^18",

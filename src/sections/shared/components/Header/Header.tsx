@@ -8,7 +8,7 @@ const Header = (): React.ReactElement => {
       <div className={styles.logo}>
         <h2 className={styles.title}>Home cinema</h2>
         <ImageCustom
-          image="favicon.ico"
+          image="/favicon.ico"
           alt=""
           className=""
           height={40}

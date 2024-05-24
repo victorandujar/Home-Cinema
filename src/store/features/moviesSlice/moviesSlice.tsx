@@ -9,6 +9,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState: MoviesSliceState = {
   loading: false,
   movies: [],
+  moviesApiResponse: {} as NowPlayingMoviesApiResponse,
   error: null,
 };
 
@@ -25,6 +26,7 @@ const moviesSlice = createSlice({
       .addCase(getNowPlayingMovies.fulfilled, (state, action) => {
         state.loading = false;
         state.movies = action.payload.data?.results!;
+        state.moviesApiResponse = action.payload.data!;
       })
       .addCase(getNowPlayingMovies.rejected, (state, action) => {
         state.loading = false;

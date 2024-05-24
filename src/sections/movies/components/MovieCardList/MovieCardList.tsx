@@ -7,7 +7,7 @@ export const MovieCardList = () => {
   const { movies } = useAppSelector((state) => state.movies);
   return (
     <ul className={styles.container}>
-      {movies.map((movie) => (
+      {movies?.map((movie) => (
         <li key={movie.id}>
           <MovieCard movie={movie} />
         </li>

@@ -14,12 +14,14 @@ export interface Movie {
 export interface NowPlayingMoviesApiResponse {
   page: number;
   results: Movie[];
+  total_pages: number;
 }
 
 export interface MoviesSliceState {
   loading: boolean;
   movies: Movie[];
   error: string | null;
+  moviesApiResponse: NowPlayingMoviesApiResponse;
 }
 
 export interface MovieImage {
