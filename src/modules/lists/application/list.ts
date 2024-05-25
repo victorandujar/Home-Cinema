@@ -1,7 +1,8 @@
 import { AppDispatch } from "@/store/store";
 import { ListRepository } from "../domain/ListRepository";
 import { List, ListApiResponse } from "../domain/List";
-export const createUserList = async (
+
+export const createMoviesList = async (
   listRepository: ListRepository,
   dispatch: AppDispatch,
   session_id: string,
