@@ -12,7 +12,7 @@ export const MovieCardList = () => {
     <ul className={styles.container}>
       {movies?.map((movie) => (
         <li key={movie.id}>
-          <Link href={`/movie/${movie.id}`}>
+          <Link href={`/movie/${movie.id}`} className={styles.linkCard}>
             <MovieCard movie={movie} />
           </Link>
         </li>
