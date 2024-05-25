@@ -1,10 +1,6 @@
 import endpoints from "@/sections/shared/utils/api/endpoints/endpoints";
 import customFetch from "@/sections/shared/utils/customFetch/customFetch";
-import {
-  FullMovie,
-  Movie,
-  NowPlayingMoviesApiResponse,
-} from "../domain/Movies";
+import { FullMovie, NowPlayingMoviesApiResponse } from "../domain/Movies";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { MoviesRepository } from "../domain/MoviesRepository";
 
