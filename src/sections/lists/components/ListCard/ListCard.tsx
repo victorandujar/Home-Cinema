@@ -16,11 +16,6 @@ export const ListCard = ({ list }: Props): React.ReactElement => {
         <span>{list.description}</span>
       </section>
       <section>
-        <Tooltip title={"See details"}>
-          <button className={styles.actionButton} aria-label="see details">
-            <FaEye color="#9C27B0" size={20} />
-          </button>
-        </Tooltip>
         <Tooltip title={"Delete list"}>
           <button className={styles.actionButton} aria-label="delete list">
             <FaTrash color="#fff" size={20} />

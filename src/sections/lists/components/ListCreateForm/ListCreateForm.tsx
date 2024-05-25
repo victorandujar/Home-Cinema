@@ -11,7 +11,11 @@ import { createMoviesList } from "@/modules/lists/application/list";
 import repositories from "@/sections/shared/utils/repositories/repositories";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 
-const ListCreateForm = (): React.ReactElement => {
+interface Props {
+  setOpenModal: (value: boolean) => void;
+}
+
+const ListCreateForm = ({ setOpenModal }: Props): React.ReactElement => {
   const dispatch = useAppDispatch();
   const { userSession } = useAppSelector((state) => state.user);
 
@@ -22,6 +26,7 @@ const ListCreateForm = (): React.ReactElement => {
       userSession.session_id,
       values,
     );
+    setOpenModal(false);
   };
 
   return (

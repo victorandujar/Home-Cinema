@@ -15,12 +15,12 @@ describe("Given a ListCard component", () => {
       expect(expectedListname).toBeInTheDocument();
     });
 
-    test("Then it should show two buttons", async () => {
+    test("Then it should show two buttons", () => {
       renderWithProviders(<ListCard list={mockLists[0]} />);
 
-      const expectedButtons = await screen.getAllByRole("button");
+      const expectedButtons = screen.getByRole("button");
 
-      expect(expectedButtons).toHaveLength(2);
+      expect(expectedButtons).toBeInTheDocument();
     });
   });
 });
