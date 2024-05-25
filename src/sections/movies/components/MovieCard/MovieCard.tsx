@@ -12,6 +12,7 @@ import { FaRegHeart } from "react-icons/fa";
 import { Box, CircularProgress } from "@mui/material";
 import environments from "@/sections/shared/utils/environments/environments";
 import styles from "./MovieCard.module.scss";
+import limitTextLength from "../../../shared/utils/limitTextLength/limitTextLength";
 
 interface Props {
   movie: Movie;
@@ -39,7 +40,7 @@ const MovieCard = ({ movie }: Props): React.ReactElement => {
             component="div"
             sx={{ fontWeight: 700, fontSize: 18 }}
           >
-            {movie.title}
+            {limitTextLength(movie.title, 40)}
           </Typography>
           <Typography>{movie.release_date.split("-")[0]}</Typography>
         </CardContent>
