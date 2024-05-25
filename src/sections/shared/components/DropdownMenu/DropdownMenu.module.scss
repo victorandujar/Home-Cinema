@@ -1,0 +1,10 @@
+.menuContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+}
+
+.menuLink:hover {
+  text-decoration: none;
+}
