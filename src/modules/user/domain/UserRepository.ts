@@ -1,6 +1,20 @@
 import { AsyncThunk } from "@reduxjs/toolkit";
-import { UserSessionApiResponse } from "./User";
+import {
+  UserRequestTokenResponse,
+  UserSessionApiResponse,
+  UserCredentials,
+} from "./User";
 
 export interface UserRepository {
-  getUserSession: AsyncThunk<UserSessionApiResponse, void, {}>;
+  getRequestToken: AsyncThunk<UserRequestTokenResponse, void, {}>;
+  createUserSession: AsyncThunk<
+    UserSessionApiResponse,
+    { requestToken: string },
+    {}
+  >;
+  validateRequestToken: AsyncThunk<
+    UserRequestTokenResponse,
+    { userCredentials: UserCredentials },
+    {}
+  >;
 }
