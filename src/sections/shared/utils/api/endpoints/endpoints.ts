@@ -6,6 +6,7 @@ const endpoints = {
   getRequestToken: `${environments.apiUrl}authentication/token/new`,
   createSession: `${environments.apiUrl}authentication/session/new`,
   validateCredentials: `${environments.apiUrl}authentication/token/validate_with_login`,
+  createMovieList: `${environments.apiUrl}list`,
 };
 
 export default endpoints;
