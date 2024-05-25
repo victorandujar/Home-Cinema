@@ -1,5 +1,5 @@
 import { AsyncThunk } from "@reduxjs/toolkit";
-import { List, ListApiResponse } from "./List";
+import { FullList, List, ListApiResponse } from "./List";
 
 export interface ListRepository {
   createMoviesList: AsyncThunk<
@@ -7,4 +7,5 @@ export interface ListRepository {
     { session_id: string; list: List },
     {}
   >;
+  getMovieListById: AsyncThunk<FullList, { list_id: string }, {}>;
 }
