@@ -1,8 +1,12 @@
 import configureStore from "redux-mock-store";
-import { createMoviesList } from "@/modules/lists/infrastructure/listServicesRepository";
-import { List, ListsSliceState } from "@/modules/lists/domain/List";
 import { thunk } from "redux-thunk";
+import {
+  createMoviesList,
+  getMovieListById,
+} from "@/modules/lists/infrastructure/listServicesRepository";
+import { List, ListsSliceState, FullList } from "@/modules/lists/domain/List";
 import { listsReducer } from "./listSlice";
+import { mockFullList } from "@/mocks/listsMocks";
 
 jest.mock("../../../sections/shared/utils/customFetch/customFetch");
 
@@ -13,6 +17,7 @@ const initialState: ListsSliceState = {
   loading: false,
   list: {} as List,
   listId: 0,
+  lists: [],
 };
 
 let store: ReturnType<typeof mockStore>;
@@ -28,9 +33,8 @@ describe("Given a listsSlice", () => {
       const state = listsReducer(initialState, action);
 
       expect(state).toEqual({
+        ...initialState,
         loading: true,
-        list: {} as List,
-        listId: 0,
       });
     });
   });
@@ -42,10 +46,11 @@ describe("Given a listsSlice", () => {
       const state = listsReducer(initialState, action);
 
       expect(state).toEqual({
+        ...initialState,
         loading: false,
-        list: {} as List,
         listId: 123,
       });
+      expect(localStorage.getItem("listId")).toBe("123");
     });
   });
 
@@ -56,9 +61,49 @@ describe("Given a listsSlice", () => {
       const state = listsReducer(initialState, action);
 
       expect(state).toEqual({
+        ...initialState,
         loading: false,
-        list: {} as List,
-        listId: 0,
+      });
+    });
+  });
+
+  // New tests for getMovieListById actions
+  describe("When it receives a new state and the action to get a movie list by ID & request is pending", () => {
+    test("Then it should handle getMovieListById.pending", () => {
+      const action = { type: getMovieListById.pending.type };
+      const state = listsReducer(initialState, action);
+
+      expect(state).toEqual({
+        ...initialState,
+        loading: true,
+      });
+    });
+  });
+
+  describe("When it receives a new state and the action to get a movie list by ID & request is fulfilled", () => {
+    test("Then it should handle getMovieListById.fulfilled", () => {
+      const payload: FullList = mockFullList;
+
+      const action = { type: getMovieListById.fulfilled.type, payload };
+      const state = listsReducer(initialState, action);
+
+      expect(state).toEqual({
+        ...initialState,
+        loading: false,
+        lists: [payload],
+      });
+    });
+  });
+
+  describe("When it receives a new state and the action to get a movie list by ID & request is rejected", () => {
+    test("Then it should handle getMovieListById.rejected", () => {
+      const error = { message: "Failed to fetch list" };
+      const action = { type: getMovieListById.rejected.type, error };
+      const state = listsReducer(initialState, action);
+
+      expect(state).toEqual({
+        ...initialState,
+        loading: false,
       });
     });
   });
