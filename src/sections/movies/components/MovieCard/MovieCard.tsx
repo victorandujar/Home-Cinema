@@ -53,7 +53,7 @@ const MovieCard = ({ movie }: Props): React.ReactElement => {
           }}
         >
           <Button size="large">
-            <FaRegHeart color="#7048b0" size={25} />
+            <FaRegHeart color="#9C27B0" size={25} />
           </Button>
           <Box
             sx={{

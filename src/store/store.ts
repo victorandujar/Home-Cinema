@@ -7,9 +7,11 @@ import {
   configureStore,
 } from "@reduxjs/toolkit";
 import { moviesReducer } from "./features/moviesSlice/moviesSlice";
+import { userReducer } from "./features/userSlice/userSlice";
 
 const rootReducer = combineReducers({
   movies: moviesReducer,
+  user: userReducer,
 });
 
 export const setupStore = (preloadedState?: Partial<RootState>) => {
