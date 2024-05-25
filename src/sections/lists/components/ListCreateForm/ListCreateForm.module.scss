@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.sectionContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inputLabel {
+  font-size: var(--SMM);
+  color: var(--grey);
+  font-weight: 700;
+}
+
+.inputText {
+  height: 40px;
+  padding: 0 6px;
+  border: 1px solid var(--grey);
+  border-radius: 5px;
+}
+
+.button {
+  background: var(--purple);
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: var(--M);
+  color: var(--light);
+  border: none;
+  border-radius: 5px;
+  font-weight: 700;
+  width: 180px;
+}

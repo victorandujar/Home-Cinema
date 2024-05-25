@@ -4,6 +4,7 @@ import styles from "./Header.module.scss";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { DropdownMenu } from "../DropdownMenu/DropdownMenu";
 import menuOptions from "../DropdownMenu/utils/menuOptions/menuOptions";
+import Link from "next/link";
 
 const Header = (): React.ReactElement => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -13,7 +14,7 @@ const Header = (): React.ReactElement => {
 
   return (
     <section className={styles.container}>
-      <div className={styles.logo}>
+      <Link href={"/"} className={styles.logo}>
         <h2 className={styles.title}>Home cinema</h2>
         <ImageCustom
           image="/favicon.ico"
@@ -22,7 +23,7 @@ const Header = (): React.ReactElement => {
           height={40}
           width={40}
         />
-      </div>
+      </Link>
       <button
         onClick={(event) => handleClick(event)}
         className={styles.menuButton}
