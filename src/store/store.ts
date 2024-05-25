@@ -8,10 +8,12 @@ import {
 } from "@reduxjs/toolkit";
 import { moviesReducer } from "./features/moviesSlice/moviesSlice";
 import { userReducer } from "./features/userSlice/userSlice";
+import { listsReducer } from "./features/listsSlice/listSlice";
 
 const rootReducer = combineReducers({
   movies: moviesReducer,
   user: userReducer,
+  lists: listsReducer,
 });
 
 export const setupStore = (preloadedState?: Partial<RootState>) => {

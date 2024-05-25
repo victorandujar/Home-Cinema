@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--light);
+  width: 70%;
+  border-bottom: 2px solid transparent;
+  border-image: linear-gradient(to right, #8a2be2, #00ffff);
+  border-image-slice: 1;
+  padding: 10px;
+}
+
+.container:hover {
+  border: none;
+  background: linear-gradient(to right, #8a2be2, #00ffff);
+  border-radius: 10px;
+}
+
+.actionButton {
+  border: none;
+  background: none;
+}
