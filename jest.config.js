@@ -20,6 +20,8 @@ const customJestConfig = {
   collectCoverageFrom: [
     "src/app/**/*.ts",
     "src/app/**/*.tsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
     "!next.config.js",
     "!next-env.d.ts",
     "!src/app/components/Providers/Providers.tsx",

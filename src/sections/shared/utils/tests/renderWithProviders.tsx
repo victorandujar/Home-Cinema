@@ -1,7 +1,7 @@
 import { PropsWithChildren } from "react";
 import { render } from "@testing-library/react";
 import { RootState, setupStore, store } from "../../../../store/store";
-import { Provider } from "react-redux";
+import StoreProvider from "@/store/StoreProvider";
 
 const renderWithProviders = (
   ui: React.ReactElement,
@@ -10,7 +10,7 @@ const renderWithProviders = (
   const Wrapper = ({ children }: PropsWithChildren) => {
     const testStore = preloadState ? setupStore(preloadState) : store;
 
-    return <Provider store={testStore}>{children}</Provider>;
+    return <StoreProvider store={testStore}>{children}</StoreProvider>;
   };
 
   return render(ui, { wrapper: Wrapper });

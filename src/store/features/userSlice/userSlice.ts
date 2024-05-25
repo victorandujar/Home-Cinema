@@ -1,13 +1,17 @@
 import { UserSliceState } from "@/modules/user/domain/User";
-import { getUserSession } from "@/modules/user/infrastructure/userServicesRepository";
+import {
+  createUserSession,
+  getRequestToken,
+  validateRequestToken,
+} from "@/modules/user/infrastructure/userServicesRepository";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: UserSliceState = {
   userSession: {
     success: false,
-    expires_at: "",
-    guest_session_id: "",
+    session_id: "",
   },
+  requestToken: "",
 };
 
 const userSlice = createSlice({
@@ -15,16 +19,32 @@ const userSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getUserSession.fulfilled, (state, action) => {
-      state.userSession = action.payload;
-    });
-    builder.addCase(getUserSession.rejected, (state, action) => {
-      state.userSession = {
-        success: false,
-        expires_at: "",
-        guest_session_id: "",
-      };
-    });
+    builder
+      .addCase(createUserSession.fulfilled, (state, action) => {
+        state.userSession = action.payload;
+      })
+      .addCase(createUserSession.rejected, (state, action) => {
+        state.userSession = {
+          success: false,
+          session_id: "",
+        };
+      });
+
+    builder
+      .addCase(getRequestToken.fulfilled, (state, action) => {
+        state.requestToken = action.payload.request_token;
+      })
+      .addCase(getRequestToken.rejected, (state, action) => {
+        state.requestToken = "";
+      });
+
+    builder
+      .addCase(validateRequestToken.fulfilled, (state, action) => {
+        state.requestToken = action.payload.request_token;
+      })
+      .addCase(validateRequestToken.rejected, (state, action) => {
+        state.requestToken = "";
+      });
   },
 });
 
