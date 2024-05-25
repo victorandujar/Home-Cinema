@@ -20,7 +20,7 @@ const ReusableModal = ({
     position: "absolute",
     top: "50%",
     left: "50%",
-    transform: "translate(-50%, -200%)",
+    transform: "translate(-50%, -50%)",
     width: matches ? "90%" : "50%",
     height: "fit-content",
     bgcolor: "#191919",

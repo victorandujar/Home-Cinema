@@ -6,8 +6,12 @@ import styles from "./MyListsPage.module.scss";
 import ReusableButton from "@/sections/shared/components/ReusableButton/ReusableButton";
 import { FaPlus } from "react-icons/fa";
 import ReusableModal from "@/sections/shared/components/ReusableModal/ReusableModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ListCreateForm from "@/sections/lists/components/ListCreateForm/ListCreateForm";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { getMovieListById } from "@/modules/lists/application/list";
+import repositories from "@/sections/shared/utils/repositories/repositories";
+import Loader from "@/sections/shared/components/Loader/Loader";
 
 const MyListsPage = () => {
   const [openCreateModal, setOpenCreateModal] = useState(false);
@@ -15,6 +19,23 @@ const MyListsPage = () => {
   const handleModalOpen = () => {
     setOpenCreateModal(true);
   };
+
+  const dispatch = useAppDispatch();
+  const { loading } = useAppSelector((state) => state.lists);
+
+  const { listId } = useAppSelector((state) => state.lists);
+
+  useEffect(() => {
+    (async () => {
+      const localStorageId = localStorage.getItem("listId");
+      (listId !== 0 || localStorageId) &&
+        (await getMovieListById(
+          repositories.lists,
+          dispatch,
+          listId !== 0 ? listId.toString() : localStorageId!,
+        ));
+    })();
+  }, [dispatch, listId]);
 
   return (
     <main className={styles.container}>
@@ -26,13 +47,13 @@ const MyListsPage = () => {
           onClick={handleModalOpen}
         />
       </div>
-      <ListCardList />
+      {loading ? <Loader /> : <ListCardList />}
       <div style={{ height: "100%", display: "flex", alignItems: "center" }}>
         <ReusableModal
           openModal={openCreateModal}
           setIsModalOpen={setOpenCreateModal}
         >
-          <ListCreateForm />
+          <ListCreateForm setOpenModal={setOpenCreateModal} />
         </ReusableModal>
       </div>
     </main>

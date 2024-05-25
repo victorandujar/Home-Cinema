@@ -1,6 +1,6 @@
 import { AppDispatch } from "@/store/store";
 import { ListRepository } from "../domain/ListRepository";
-import { List, ListApiResponse } from "../domain/List";
+import { FullList, List, ListApiResponse } from "../domain/List";
 
 export const createMoviesList = async (
   listRepository: ListRepository,
@@ -19,5 +19,19 @@ export const createMoviesList = async (
       list_id: 0,
       success: false,
     };
+  }
+};
+
+export const getMovieListById = async (
+  listRepository: ListRepository,
+  dispatch: AppDispatch,
+  list_id: string,
+): Promise<FullList> => {
+  const action = await dispatch(listRepository.getMovieListById({ list_id }));
+
+  if (listRepository.getMovieListById.fulfilled.match(action)) {
+    return action.payload;
+  } else {
+    return {} as FullList;
   }
 };
