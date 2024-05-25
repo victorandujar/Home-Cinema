@@ -17,7 +17,12 @@
   gap: 10px;
 }
 
+.logo:hover {
+  text-decoration: none;
+}
+
 .title {
+  color: var(--light);
   text-transform: uppercase;
 }
 
