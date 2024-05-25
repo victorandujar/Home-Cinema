@@ -1,4 +1,5 @@
-import { List } from "@/modules/lists/domain/List";
+import { FullList, List } from "@/modules/lists/domain/List";
+import { mockMovies } from "./moviesMocks";
 
 export const mockLists: List[] = [
   {
@@ -22,3 +23,17 @@ export const mockLists: List[] = [
     description: "Documentales que considero interesantes y educativos.",
   },
 ];
+
+export const mockFullList: FullList = {
+  id: 123,
+  name: "My List",
+  description: "This is my list of favorite movies.",
+  items: mockMovies,
+  created_by: "",
+  favorite_count: 0,
+  item_count: 2,
+  page: 1,
+  poster_path: "",
+  total_pages: 211,
+  total_results: 1234,
+};
