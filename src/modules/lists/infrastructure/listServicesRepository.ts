@@ -14,7 +14,7 @@ export const createMoviesList = createAsyncThunk<
 >("list/createMoviesList", async ({ session_id, list }) => {
   const { data, success } = await customFetch(
     "POST",
-    `${endpoints.createMovieList}?session_id=${session_id}`,
+    `${endpoints.baseMovieList}?session_id=${session_id}`,
     {
       body: {
         ...list,
