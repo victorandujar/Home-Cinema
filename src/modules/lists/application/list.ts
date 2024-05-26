@@ -35,3 +35,20 @@ export const getMovieListById = async (
     return {} as FullList;
   }
 };
+
+export const deleteMovieListById = async (
+  listRepository: ListRepository,
+  dispatch: AppDispatch,
+  list_id: string,
+  session_id: string,
+): Promise<{ success: boolean }> => {
+  const action = await dispatch(
+    listRepository.deleteMovieListById({ list_id, session_id }),
+  );
+
+  if (listRepository.deleteMovieListById.fulfilled.match(action)) {
+    return { success: action.payload.success };
+  } else {
+    return { success: false };
+  }
+};

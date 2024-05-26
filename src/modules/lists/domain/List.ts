@@ -15,6 +15,7 @@ export interface ListsSliceState {
   list: List;
   listId: number;
   lists: FullList[];
+  success: boolean;
 }
 
 export interface FullList {
