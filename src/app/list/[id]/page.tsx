@@ -12,9 +12,7 @@ interface Props {
   params: { id: string };
 }
 
-export const ListByIdDetailsPage = ({
-  params: { id },
-}: Props): React.ReactElement => {
+const ListByIdDetailsPage = ({ params: { id } }: Props): React.ReactElement => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {

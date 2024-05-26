@@ -13,7 +13,7 @@ interface Props {
   params: { id: string };
 }
 
-const MovieDetailPage = ({ params: { id } }: Props) => {
+const MovieDetailPage = ({ params: { id } }: Props): React.ReactElement => {
   const dispatch = useAppDispatch();
   const { loading } = useAppSelector((state) => state.movies);
 

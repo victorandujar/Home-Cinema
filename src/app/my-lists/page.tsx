@@ -14,7 +14,7 @@ import repositories from "@/sections/shared/utils/repositories/repositories";
 import Loader from "@/sections/shared/components/Loader/Loader";
 import NoDataHandler from "@/sections/shared/components/NoDataHandler/NoDataHandler";
 
-const MyListsPage = () => {
+const MyListsPage = (): React.ReactElement => {
   const [openCreateModal, setOpenCreateModal] = useState(false);
   const dispatch = useAppDispatch();
 
@@ -26,13 +26,15 @@ const MyListsPage = () => {
   };
 
   useEffect(() => {
+    const localStorageId = localStorage.getItem("listId");
     (async () => {
-      const localStorageId = localStorage.getItem("listId");
-      (listId !== 0 || localStorageId) &&
+      const idToFetch = listId !== 0 ? listId : localStorageId;
+
+      idToFetch &&
         (await getMovieListById(
           repositories.lists,
           dispatch,
-          listId !== 0 ? listId.toString() : localStorageId!,
+          idToFetch.toString(),
         ));
     })();
   }, [dispatch, listId]);
@@ -49,10 +51,12 @@ const MyListsPage = () => {
       </div>
       {loading ? (
         <Loader />
-      ) : lists.length === 0 ? (
-        <NoDataHandler text="No lists available. Create one withe the button above." />
-      ) : (
+      ) : !loading && lists.length > 0 ? (
         <ListCardList />
+      ) : (
+        lists.length === 0 && (
+          <NoDataHandler text="No lists available. Create one with the button above." />
+        )
       )}
       <div style={{ height: "100%", display: "flex", alignItems: "center" }}>
         <ReusableModal
