@@ -6,7 +6,12 @@ import { FullList, List, ListApiResponse } from "../domain/List";
 import { revalidateTag } from "next/cache";
 
 export const listRepository = (): ListRepository => {
-  return { createMoviesList, getMovieListById, deleteMovieListById };
+  return {
+    createMoviesList,
+    getMovieListById,
+    deleteMovieListById,
+    updateMovieListById,
+  };
 };
 
 export const createMoviesList = createAsyncThunk<
@@ -52,6 +57,25 @@ export const deleteMovieListById = createAsyncThunk<
   const { data, success } = await customFetch(
     "DELETE",
     `${endpoints.baseMovieList}/${list_id}?session_id=${session_id}`,
+  );
+  if (!success) {
+    return { success: false };
+  }
+  return { success };
+});
+
+export const updateMovieListById = createAsyncThunk<
+  { success: boolean },
+  { list_id: string; session_id: string; media_id: string }
+>("list/updateMovieListById", async ({ list_id, session_id, media_id }) => {
+  const { success } = await customFetch(
+    "POST",
+    `${endpoints.baseMovieList}/${list_id}/add_item?session_id=${session_id}`,
+    {
+      body: {
+        media_id,
+      },
+    },
   );
   if (!success) {
     return { success: false };

@@ -13,4 +13,9 @@ export interface ListRepository {
     { list_id: string; session_id: string },
     {}
   >;
+  updateMovieListById: AsyncThunk<
+    { success: boolean },
+    { list_id: string; session_id: string; media_id: string },
+    {}
+  >;
 }

@@ -5,9 +5,13 @@ import React from "react";
 import styles from "./MovieCardList.module.scss";
 import MovieCard from "../MovieCard/MovieCard";
 import Link from "next/link";
+import { Movie } from "@/modules/movies/domain/Movies";
 
-export const MovieCardList = () => {
-  const { movies } = useAppSelector((state) => state.movies);
+interface Props {
+  movies: Movie[];
+}
+
+export const MovieCardList = ({ movies }: Props) => {
   return (
     <ul className={styles.container}>
       {movies?.map((movie) => (

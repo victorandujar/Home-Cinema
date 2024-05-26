@@ -4,6 +4,7 @@ import {
   createMoviesList,
   deleteMovieListById,
   getMovieListById,
+  updateMovieListById,
 } from "./listServicesRepository";
 import { List, ListApiResponse } from "../domain/List";
 import { listsReducer } from "@/store/features/listsSlice/listSlice";
@@ -119,6 +120,44 @@ describe("Given a deleteMovieListById function", () => {
 
       const response = await store.dispatch(
         deleteMovieListById({ list_id: "123", session_id: "abcd1234" }),
+      );
+
+      expect(response.payload).toEqual({ success: false });
+    });
+  });
+});
+
+describe("Given an updateMovieListById function", () => {
+  describe("When it is called and it is fulfilled", () => {
+    test("Then it should update the movie list successfully", async () => {
+      (customFetch as jest.Mock).mockResolvedValue({
+        success: true,
+      });
+
+      const response = await store.dispatch(
+        updateMovieListById({
+          list_id: "123",
+          session_id: "abcd1234",
+          media_id: "567",
+        }),
+      );
+
+      expect(response.payload).toEqual({ success: true });
+    });
+  });
+
+  describe("When it is called and the response is rejected", () => {
+    test("Then it should handle fetch error", async () => {
+      (customFetch as jest.Mock).mockResolvedValue({
+        success: false,
+      });
+
+      const response = await store.dispatch(
+        updateMovieListById({
+          list_id: "123",
+          session_id: "abcd1234",
+          media_id: "567",
+        }),
       );
 
       expect(response.payload).toEqual({ success: false });

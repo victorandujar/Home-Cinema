@@ -4,6 +4,7 @@ import {
   createMoviesList,
   deleteMovieListById,
   getMovieListById,
+  updateMovieListById,
 } from "@/modules/lists/infrastructure/listServicesRepository";
 import { List, ListsSliceState, FullList } from "@/modules/lists/domain/List";
 import { listsReducer } from "./listSlice";
@@ -16,7 +17,7 @@ const mockStore = configureStore(middlewares as any);
 
 const initialState: ListsSliceState = {
   loading: false,
-  list: {} as List,
+  list: {} as FullList,
   listId: 0,
   lists: [],
   success: false,
@@ -94,6 +95,7 @@ describe("Given a listsSlice", () => {
         ...stateWithListId,
         loading: false,
         lists: [payload],
+        list: payload,
       });
     });
   });
@@ -143,6 +145,47 @@ describe("When it receives a new state and the action to delete a movie list & r
     test("Then it should handle deleteMovieListById.rejected", () => {
       const error = { message: "Failed to delete list" };
       const action = { type: deleteMovieListById.rejected.type, error };
+      const state = listsReducer(initialState, action);
+
+      expect(state).toEqual({
+        ...initialState,
+        loading: false,
+      });
+    });
+  });
+});
+
+describe("Given a listsSlice", () => {
+  describe("When it receives a new state and the action to update a movie list & request is pending", () => {
+    test("Then it should handle updateMovieListById.pending", () => {
+      const action = { type: updateMovieListById.pending.type };
+      const state = listsReducer(initialState, action);
+
+      expect(state).toEqual({
+        ...initialState,
+        loading: true,
+      });
+    });
+  });
+
+  describe("When it receives a new state and the action to update a movie list & request is fulfilled", () => {
+    test("Then it should handle updateMovieListById.fulfilled", () => {
+      const payload = { success: true };
+      const action = { type: updateMovieListById.fulfilled.type, payload };
+      const state = listsReducer(initialState, action);
+
+      expect(state).toEqual({
+        ...initialState,
+        success: true,
+        loading: false,
+      });
+    });
+  });
+
+  describe("When it receives a new state and the action to update a movie list & request is rejected", () => {
+    test("Then it should handle updateMovieListById.rejected", () => {
+      const error = { message: "Failed to update list" };
+      const action = { type: updateMovieListById.rejected.type, error };
       const state = listsReducer(initialState, action);
 
       expect(state).toEqual({

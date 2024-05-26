@@ -2,12 +2,13 @@ import { FullList, ListsSliceState } from "@/modules/lists/domain/List";
 import {
   createMoviesList,
   getMovieListById,
+  updateMovieListById,
 } from "@/modules/lists/infrastructure/listServicesRepository";
 import { createSlice } from "@reduxjs/toolkit";
 import { deleteMovieListById } from "../../../modules/lists/infrastructure/listServicesRepository";
 
 const initialState: ListsSliceState = {
-  loading: false,
+  loading: true,
   list: {} as FullList,
   listId: 0,
   lists: [],
@@ -37,7 +38,8 @@ const listsSlice = createSlice({
       })
       .addCase(getMovieListById.fulfilled, (state, action) => {
         state.loading = false;
-        state.lists = state.listId !== 0 ? [action.payload] : [];
+        state.lists = [action.payload];
+        state.list = action.payload;
       })
       .addCase(getMovieListById.rejected, (state) => {
         state.loading = false;
@@ -53,6 +55,16 @@ const listsSlice = createSlice({
         state.listId = 0;
       })
       .addCase(deleteMovieListById.rejected, (state) => {
+        state.loading = false;
+        state.success = state.success;
+      })
+      .addCase(updateMovieListById.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(updateMovieListById.fulfilled, (state, action) => {
+        state.success = action.payload.success;
+      })
+      .addCase(updateMovieListById.rejected, (state) => {
         state.loading = false;
         state.success = state.success;
       });

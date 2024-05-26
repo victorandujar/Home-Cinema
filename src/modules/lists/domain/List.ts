@@ -12,7 +12,7 @@ export interface ListApiResponse {
 
 export interface ListsSliceState {
   loading: boolean;
-  list: List;
+  list: FullList;
   listId: number;
   lists: FullList[];
   success: boolean;

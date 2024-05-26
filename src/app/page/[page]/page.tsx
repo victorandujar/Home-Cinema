@@ -37,7 +37,7 @@ const Home = ({ params: { page } }: Props): React.ReactElement => {
         <Loader />
       ) : !loading && movies ? (
         <div className={styles.moviesContainer}>
-          <MovieCardList />
+          <MovieCardList movies={movies} />
           <div className={styles.paginationContainer}>
             <CustomPagination currentPage={page} pageName="" />
           </div>
