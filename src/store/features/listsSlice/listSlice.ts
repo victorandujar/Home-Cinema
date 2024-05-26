@@ -1,15 +1,17 @@
-import { FullList, List, ListsSliceState } from "@/modules/lists/domain/List";
+import { FullList, ListsSliceState } from "@/modules/lists/domain/List";
 import {
   createMoviesList,
   getMovieListById,
 } from "@/modules/lists/infrastructure/listServicesRepository";
 import { createSlice } from "@reduxjs/toolkit";
+import { deleteMovieListById } from "../../../modules/lists/infrastructure/listServicesRepository";
 
 const initialState: ListsSliceState = {
-  loading: true,
-  list: {} as List,
+  loading: false,
+  list: {} as FullList,
   listId: 0,
   lists: [],
+  success: false,
 };
 
 const listsSlice = createSlice({
@@ -35,11 +37,24 @@ const listsSlice = createSlice({
       })
       .addCase(getMovieListById.fulfilled, (state, action) => {
         state.loading = false;
-        state.lists = [action.payload];
+        state.lists = state.listId !== 0 ? [action.payload] : [];
       })
       .addCase(getMovieListById.rejected, (state) => {
         state.loading = false;
         state.lists = state.lists;
+      })
+      .addCase(deleteMovieListById.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(deleteMovieListById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.success = action.payload.success;
+        state.lists = [];
+        state.listId = 0;
+      })
+      .addCase(deleteMovieListById.rejected, (state) => {
+        state.loading = false;
+        state.success = state.success;
       });
   },
 });

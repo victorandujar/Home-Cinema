@@ -9,7 +9,7 @@ export const ListCardList = () => {
   return (
     <ul className={styles.container}>
       {lists?.map((list) => (
-        <li key={list.name} className={styles.listItem}>
+        <li key={list.name + Math.random()} className={styles.listItem}>
           <ListCard list={list} />
         </li>
       ))}

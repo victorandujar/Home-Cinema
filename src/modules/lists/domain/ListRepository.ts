@@ -8,4 +8,9 @@ export interface ListRepository {
     {}
   >;
   getMovieListById: AsyncThunk<FullList, { list_id: string }, {}>;
+  deleteMovieListById: AsyncThunk<
+    { success: boolean },
+    { list_id: string; session_id: string },
+    {}
+  >;
 }

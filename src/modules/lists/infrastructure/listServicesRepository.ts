@@ -6,7 +6,7 @@ import { FullList, List, ListApiResponse } from "../domain/List";
 import { revalidateTag } from "next/cache";
 
 export const listRepository = (): ListRepository => {
-  return { createMoviesList, getMovieListById };
+  return { createMoviesList, getMovieListById, deleteMovieListById };
 };
 
 export const createMoviesList = createAsyncThunk<
@@ -44,3 +44,17 @@ export const getMovieListById = createAsyncThunk<FullList, { list_id: string }>(
     return data as FullList;
   },
 );
+
+export const deleteMovieListById = createAsyncThunk<
+  { success: boolean },
+  { list_id: string; session_id: string }
+>("list/deleteMovieListById", async ({ list_id, session_id }) => {
+  const { data, success } = await customFetch(
+    "DELETE",
+    `${endpoints.baseMovieList}/${list_id}?session_id=${session_id}`,
+  );
+  if (!success) {
+    return { success: false };
+  }
+  return { success };
+});
