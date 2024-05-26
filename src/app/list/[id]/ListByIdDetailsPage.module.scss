@@ -1,0 +1,14 @@
+.container {
+  padding: 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+
+.backButton {
+  display: flex;
+  justify-content: flex-start;
+  width: 70%;
+}
