@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -8,41 +8,43 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Movie } from "@/modules/movies/domain/Movies";
-import { FaRegHeart } from "react-icons/fa";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { Box, CircularProgress } from "@mui/material";
 import environments from "@/sections/shared/utils/environments/environments";
 import styles from "./MovieCard.module.scss";
 import limitTextLength from "../../../shared/utils/limitTextLength/limitTextLength";
 import repositories from "@/sections/shared/utils/repositories/repositories";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { updateMovieListById } from "@/modules/lists/application/list";
+import { getMovieListById } from "@/modules/lists/application/list";
+import useMovies from "../../hooks/useMovies";
 
 interface Props {
   movie: Movie;
 }
 
 const MovieCard = ({ movie }: Props): React.ReactElement => {
+  const [isAddedToFavs, setIsAddedToFavs] = useState<boolean>(false);
+  const { checkMovieAddedToFavs, handleButtonClick } = useMovies();
   const dispatch = useAppDispatch();
 
   const { listId } = useAppSelector((state) => state.lists);
-  const { userSession } = useAppSelector((state) => state.user);
-  const handleButtonClick = async (
-    event: React.MouseEvent<HTMLButtonElement>,
-  ) => {
-    const localStorageId = localStorage.getItem("listId");
-    const idToFetch = listId !== 0 ? listId : localStorageId;
 
-    event.preventDefault();
-    event.stopPropagation();
+  const localStorageId = localStorage.getItem("listId");
+  const idToFetch = listId !== 0 ? listId : localStorageId;
 
-    await updateMovieListById(
-      repositories.lists,
-      dispatch,
-      idToFetch?.toString()!,
-      userSession.session_id,
-      movie.id.toString(),
-    );
-  };
+  useEffect(() => {
+    (async () => {
+      await getMovieListById(
+        repositories.lists,
+        dispatch,
+        idToFetch?.toString()!,
+      );
+    })();
+  }, [dispatch, idToFetch]);
+
+  useEffect(() => {
+    setIsAddedToFavs(checkMovieAddedToFavs(movie.id));
+  }, [checkMovieAddedToFavs, listId, movie.id]);
 
   return (
     <article className={styles.container}>
@@ -78,8 +80,17 @@ const MovieCard = ({ movie }: Props): React.ReactElement => {
             margin: 0,
           }}
         >
-          <Button style={{ zIndex: 1000 }} onClick={handleButtonClick}>
-            <FaRegHeart color="#9C27B0" size={25} />
+          <Button
+            style={{ zIndex: 1000 }}
+            onClick={(event) =>
+              handleButtonClick(event, setIsAddedToFavs, movie.id)
+            }
+          >
+            {isAddedToFavs ? (
+              <FaHeart color="#9C27B0" size={25} />
+            ) : (
+              <FaRegHeart color="#9C27B0" size={25} />
+            )}
           </Button>
           <Box
             sx={{

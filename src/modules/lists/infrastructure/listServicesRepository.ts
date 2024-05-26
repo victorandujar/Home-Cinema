@@ -41,6 +41,9 @@ export const getMovieListById = createAsyncThunk<FullList, { list_id: string }>(
     const { data, success } = await customFetch(
       "GET",
       `${endpoints.baseMovieList}/${list_id}`,
+      {
+        extraConfigs: { next: { tags: ["movieList"] } },
+      },
     );
     if (!success) {
       return {} as FullList;
@@ -80,5 +83,6 @@ export const updateMovieListById = createAsyncThunk<
   if (!success) {
     return { success: false };
   }
+  revalidateTag("movieList");
   return { success };
 });
