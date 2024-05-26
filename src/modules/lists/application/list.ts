@@ -52,3 +52,21 @@ export const deleteMovieListById = async (
     return { success: false };
   }
 };
+
+export const updateMovieListById = async (
+  listRepository: ListRepository,
+  dispatch: AppDispatch,
+  list_id: string,
+  session_id: string,
+  media_id: string,
+): Promise<{ success: boolean }> => {
+  const action = await dispatch(
+    listRepository.updateMovieListById({ list_id, session_id, media_id }),
+  );
+
+  if (listRepository.updateMovieListById.fulfilled.match(action)) {
+    return { success: action.payload.success };
+  } else {
+    return { success: false };
+  }
+};
