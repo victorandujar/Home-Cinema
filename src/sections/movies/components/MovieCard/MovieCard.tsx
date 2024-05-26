@@ -13,12 +13,37 @@ import { Box, CircularProgress } from "@mui/material";
 import environments from "@/sections/shared/utils/environments/environments";
 import styles from "./MovieCard.module.scss";
 import limitTextLength from "../../../shared/utils/limitTextLength/limitTextLength";
+import repositories from "@/sections/shared/utils/repositories/repositories";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { updateMovieListById } from "@/modules/lists/application/list";
 
 interface Props {
   movie: Movie;
 }
 
 const MovieCard = ({ movie }: Props): React.ReactElement => {
+  const dispatch = useAppDispatch();
+
+  const { listId } = useAppSelector((state) => state.lists);
+  const { userSession } = useAppSelector((state) => state.user);
+  const handleButtonClick = async (
+    event: React.MouseEvent<HTMLButtonElement>,
+  ) => {
+    const localStorageId = localStorage.getItem("listId");
+    const idToFetch = listId !== 0 ? listId : localStorageId;
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    await updateMovieListById(
+      repositories.lists,
+      dispatch,
+      idToFetch?.toString()!,
+      userSession.session_id,
+      movie.id.toString(),
+    );
+  };
+
   return (
     <article className={styles.container}>
       <Card
@@ -53,7 +78,7 @@ const MovieCard = ({ movie }: Props): React.ReactElement => {
             margin: 0,
           }}
         >
-          <Button size="large">
+          <Button style={{ zIndex: 1000 }} onClick={handleButtonClick}>
             <FaRegHeart color="#9C27B0" size={25} />
           </Button>
           <Box
