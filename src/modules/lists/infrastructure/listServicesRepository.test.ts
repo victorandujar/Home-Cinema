@@ -28,6 +28,10 @@ const mockListApiResponse: ListApiResponse = {
   list_id: 123,
 };
 
+jest.mock("next/cache", () => ({
+  revalidateTag: jest.fn(),
+}));
+
 describe("Given a createMoviesList function", () => {
   describe("When it is called and it is fulfilled", () => {
     test("Then it should create movies list successfully", async () => {
