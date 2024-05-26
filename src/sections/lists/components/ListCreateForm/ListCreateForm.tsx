@@ -66,7 +66,7 @@ const ListCreateForm = ({ setOpenModal }: Props): React.ReactElement => {
               type="text"
               id="description"
               placeholder="Enter a description for the list"
-              maxLength={25}
+              maxLength={500}
               {...getFieldProps("description")}
             />
             {errors.description && touched.description && (

@@ -2,6 +2,7 @@ import React from "react";
 import { ListCard } from "../ListCard/ListCard";
 import styles from "./ListCardList.module.scss";
 import { useAppSelector } from "@/store/hooks";
+import Link from "next/link";
 
 export const ListCardList = () => {
   const { lists } = useAppSelector((state) => state.lists);

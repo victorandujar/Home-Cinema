@@ -2,12 +2,21 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: var(--light);
   width: 70%;
   border-bottom: 2px solid transparent;
   border-image: linear-gradient(to right, #8a2be2, #1c0027);
   border-image-slice: 1;
   padding: 10px;
+}
+
+.link {
+  color: var(--light);
+  width: 95%;
+}
+
+.link:hover {
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .container:hover {

@@ -1,4 +1,4 @@
-import { List } from "@/modules/lists/domain/List";
+import { FullList, List } from "@/modules/lists/domain/List";
 import React from "react";
 import styles from "./ListCard.module.scss";
 import { FaTrash } from "react-icons/fa";
@@ -6,9 +6,10 @@ import { Tooltip } from "@mui/material";
 import { deleteMovieListById } from "@/modules/lists/application/list";
 import repositories from "@/sections/shared/utils/repositories/repositories";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import Link from "next/link";
 
 interface Props {
-  list: List;
+  list: FullList;
 }
 
 export const ListCard = ({ list }: Props): React.ReactElement => {
@@ -25,15 +26,18 @@ export const ListCard = ({ list }: Props): React.ReactElement => {
       listId !== 0 ? listId.toString() : localStorageId!,
       userSession.session_id,
     );
+
     localStorage.removeItem("listId");
   };
 
   return (
     <article className={styles.container}>
-      <section>
-        <h4>{list.name}</h4>
-        <span>{list.description}</span>
-      </section>
+      <Link href={`/list/${list.id}`} className={styles.link}>
+        <section>
+          <h4>{list.name}</h4>
+          <span>{list.description}</span>
+        </section>
+      </Link>
       <section>
         <Tooltip title={"Delete list"}>
           <button
