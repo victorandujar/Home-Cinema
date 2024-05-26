@@ -1,4 +1,4 @@
-# BikeMeet - Social Cycling App
+# Home Cinema - Movies App
 
 ## Introduction
 
