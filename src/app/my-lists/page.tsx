@@ -12,18 +12,18 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { getMovieListById } from "@/modules/lists/application/list";
 import repositories from "@/sections/shared/utils/repositories/repositories";
 import Loader from "@/sections/shared/components/Loader/Loader";
+import NoDataHandler from "@/sections/shared/components/NoDataHandler/NoDataHandler";
 
 const MyListsPage = () => {
   const [openCreateModal, setOpenCreateModal] = useState(false);
+  const dispatch = useAppDispatch();
+
+  const { loading } = useAppSelector((state) => state.lists);
+  const { listId, lists } = useAppSelector((state) => state.lists);
 
   const handleModalOpen = () => {
     setOpenCreateModal(true);
   };
-
-  const dispatch = useAppDispatch();
-  const { loading } = useAppSelector((state) => state.lists);
-
-  const { listId } = useAppSelector((state) => state.lists);
 
   useEffect(() => {
     (async () => {
@@ -47,7 +47,13 @@ const MyListsPage = () => {
           onClick={handleModalOpen}
         />
       </div>
-      {loading ? <Loader /> : <ListCardList />}
+      {loading ? (
+        <Loader />
+      ) : lists.length === 0 ? (
+        <NoDataHandler text="No lists available. Create one withe the button above." />
+      ) : (
+        <ListCardList />
+      )}
       <div style={{ height: "100%", display: "flex", alignItems: "center" }}>
         <ReusableModal
           openModal={openCreateModal}
